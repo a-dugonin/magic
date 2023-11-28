@@ -1,0 +1,3 @@
+import magic
+
+magic.main()

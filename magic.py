@@ -96,6 +96,7 @@ class Lava:
 
 
 def init_element(element: str):
+    """Функция для инициализации элементов"""
     if element.lower() == 'вода':
         return Water()
     elif element.lower() == 'воздух':
@@ -107,6 +108,7 @@ def init_element(element: str):
 
 
 def union_elements():
+    """Функция для объединения элементов"""
     list_elements = ['огонь', 'Земля']
     element_1, element_2 = [init_element(element) for element in list_elements]
     return element_1 + element_2

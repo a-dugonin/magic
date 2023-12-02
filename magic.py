@@ -96,7 +96,7 @@ class Lava:
 
 
 def init_element(element: str):
-    """Функция для инициализации элементов"""
+    """Функция для иницииализации элементов"""
     if element.lower() == 'вода':
         return Water()
     elif element.lower() == 'воздух':

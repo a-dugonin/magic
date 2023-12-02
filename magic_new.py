@@ -1,12 +1,12 @@
 class Water:
-    """Класс для создания объекта 'Вода' """
+    """Класс Water использяется для объединения с другими элементами и получения Storm, Steam, Dirt"""
+
     def __add__(self, other):
-        """Магический метод для объединения элементов"""
-        if type(other) is Air:
+        if isinstance(other, Air):
             return Storm()
-        elif type(other) is Fire:
+        elif isinstance(other, Fire):
             return Steam()
-        elif type(other) is Earth:
+        elif isinstance(other, Earth):
             return Dirt()
 
     def __str__(self):
@@ -14,14 +14,14 @@ class Water:
 
 
 class Air:
-    """Класс для создания объекта 'Воздух' """
+    """Класс Air использяется для объединения с другими элементами и получения Storm, Lightning, Dust"""
+
     def __add__(self, other):
-        """Магический метод для объединения элементов"""
-        if type(other) is Water:
+        if isinstance(other, Water):
             return Storm()
-        elif type(other) is Fire:
+        elif isinstance(other, Fire):
             return Lightning()
-        elif type(other) is Earth:
+        elif isinstance(other, Earth):
             return Dust()
 
     def __str__(self):
@@ -29,14 +29,14 @@ class Air:
 
 
 class Fire:
-    """Класс для создания объекта 'Огонь' """
+    """Класс Fire использяется для объединения с другими элементами и получения Steam, Lightning, Lava"""
+
     def __add__(self, other):
-        """Магический метод для объединения элементов"""
-        if type(other) is Water:
+        if isinstance(other, Water):
             return Steam()
-        elif type(other) is Air:
+        elif isinstance(other, Air):
             return Lightning()
-        elif type(other) is Earth:
+        elif isinstance(other, Earth):
             return Lava()
 
     def __str__(self):
@@ -44,14 +44,14 @@ class Fire:
 
 
 class Earth:
-    """Класс для создания объекта 'Земля' """
+    """Класс Earth использяется для объединения с другими элементами и получения Dirt, Dust, Lava"""
+
     def __add__(self, other):
-        """Магический метод для объединения элементов"""
-        if type(other) is Water:
+        if isinstance(other, Water):
             return Dirt()
-        elif type(other) is Air:
+        elif isinstance(other, Air):
             return Dust()
-        elif type(other) is Fire:
+        elif isinstance(other, Fire):
             return Lava()
 
     def __str__(self):
@@ -59,63 +59,42 @@ class Earth:
 
 
 class Storm:
-    """Класс для создания объекта 'Шторм' """
     def __str__(self):
-        return "Шторм"
+        return f'Объединили элемент {Water()} c элементом {Air()} и получили элемент Шторм'
 
 
 class Steam:
-    """Класс для создания объекта 'Пар' """
     def __str__(self):
-        return "Пар"
+        return f'Объединили элемент {Water()} c элементом {Fire()} и получили элемент Пар'
 
 
 class Dirt:
-    """Класс для создания объекта 'Грязь' """
     def __str__(self):
-        return "Грязь"
+        return f'Объединили элемент {Water()} c элементом {Earth()} и получили элемент Грязь'
 
 
 class Lightning:
-    """Класс для создания объекта 'Молния' """
     def __str__(self):
-        return "Молния"
+        return f'Объединили элемент {Air()} c элементом {Fire()} и получили элемент Молния'
 
 
 class Dust:
-    """Класс для создания объекта 'Пыль' """
     def __str__(self):
-        return "Пыль"
+        return f'Объединили элемент {Earth()} c элементом {Air()} и получили элемент Пыль'
 
 
 class Lava:
-    """Класс для создания объекта 'Лава' """
 
     def __str__(self):
-        return "Лава"
-
-
-def init_element(element: str):
-    """Функция для иницииализации элементов"""
-    if element.lower() == 'вода':
-        return Water()
-    elif element.lower() == 'воздух':
-        return Air()
-    elif element.lower() == 'огонь':
-        return Fire()
-    else:
-        return Earth()
-
-
-def union_elements():
-    """Функция для объединения элементов"""
-    list_elements = ['огонь', 'Земля']
-    element_1, element_2 = [init_element(element) for element in list_elements]
-    return element_1 + element_2
+        return f'Объединили элемент {Earth()} c элементом {Fire()} и получили элемент Лава'
 
 
 def main():
-    print(union_elements())
+    elements = [Air(), Water(), Fire(), Earth()]
+    for i in range(len(elements)):
+        for j in range(i + 1, len(elements)):
+            result = elements[i] + elements[j]
+            print(result)
 
 
 if __name__ == '__main__':
